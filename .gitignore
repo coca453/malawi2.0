@@ -104,3 +104,4 @@ typings/
 
 #Angular
 .angular/
+.angular/cache
