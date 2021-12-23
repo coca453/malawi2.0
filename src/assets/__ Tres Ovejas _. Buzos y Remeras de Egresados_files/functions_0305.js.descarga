@@ -1,0 +1,1272 @@
+$(window).scroll(function(){
+	var obj_top = $(document).scrollTop();
+	if(obj_top > 10){
+		$('#header').height(82);
+		$('#header .contenido .tresovejas').width(55);
+		$('#header .contenido .tresovejas').css('margin-top','10px');
+		$('#header .inner').addClass('header-scroll');
+		$('#header .inner').css('padding-bottom','0');
+		$('#header .base').addClass('base-scroll');
+		$('#header .contenido .opciones').css('margin-top','22px');
+	}else{
+		$('#header').height(153);
+		$('#header .contenido .tresovejas').width(112);
+		$('#header .contenido .tresovejas').css('margin-top','24px');
+		$('#header .inner').removeClass('header-scroll');
+		$('#header .inner').css('padding-bottom','10px');
+		$('#header .base').removeClass('base-scroll');
+		$('#header .contenido .opciones').css('margin-top','40px');
+	}
+});
+function abreMenu(){
+	var estatus = $('#menu').css('display');
+	if(estatus == 'none'){
+		$('#menu').fadeIn();
+		var menuHeight = $('.blanco .contenido').height();
+		$('.verde .contenido').height(menuHeight);
+	}else{
+		$('#menu').fadeOut();
+	}
+}
+function cierraMenu(){
+	$('#menu').fadeOut();
+}
+
+function scrollScreen(val){
+	var valor = $('#'+val).offset().top;
+	var broserWidth = $(window).width();
+	if(broserWidth > 767){
+		$('html,body').animate({scrollTop: (valor - 125)}, 'slow');
+	}else{
+		$('html,body').animate({scrollTop: (valor - 85)}, 'slow');
+	}
+}
+
+function seleccionaModelo(val){
+	$('.modulo').removeClass('seleccionado');
+	$('#modulo-'+val).addClass('seleccionado');
+	$('.sub-row').fadeOut(0);
+	$('#buzos-modelos'+val).fadeIn();
+	$('#buzos-modelos'+val).css('display','inline-block');
+	scrollScreen('buzos-modelos'+val);
+}
+function seleccionaSubModelo(val){
+	$('.submodelo').removeClass('seleccionado');
+	$('#sub-modulo-'+val).addClass('seleccionado');
+	window.location.href = '?page=tu-buzo-paso2&buzo='+val;
+	//$('#btn-paso2').attr('href','?page=tu-buzo-paso2&buzo='+val);
+	//$('.row-btn').fadeIn();
+}
+
+function seleccionaModeloMobile(val){
+	$('.modulo').removeClass('seleccionado');
+	$('#mobile-modulo-'+val).addClass('seleccionado');
+	$('.slider-modelos').fadeOut(0);
+	$('#modelos-slider-'+val).fadeIn();
+	scrollScreen('modelos-slider-'+val);
+}
+function seleccionaSubModeloMobile(val){
+	$('.slider-modelos').removeClass('seleccionado');
+	$('#mobile-sub-modulo-'+val).addClass('seleccionado');
+	$('#btn-paso2').attr('href','?page=tu-buzo-paso2&buzo='+val);
+	$('.row-btn').fadeIn();
+}
+function ocultaSelecciones(){
+	$('.partes-mask'),css('opacity',0);
+}
+function borraColoreado(val){
+	for(i=1;i<=1;i++){
+		$('#'+val+'-trama'+i).css('opacity',0);
+	}
+	for(i=1;i<=7;i++){
+		$('#'+val+'-degrade'+i).css('opacity',0);
+	}
+	if(val == 'todo'){
+		for(i=1;i<=1;i++){
+			$('#modelo1-frente1-trama'+i).css('opacity',0);
+			$('#modelo1-frente2-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-espalda-trama'+i).css('opacity',0);
+			$('#modelo1-manga1-trama'+i).css('opacity',0);
+			$('#modelo1-manga2-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-manga1-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-manga2-trama'+i).css('opacity',0);
+			$('#modelo1-cuello-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-cuello-trama'+i).css('opacity',0);
+			$('#modelo1-bolsillos-trama'+i).css('opacity',0);
+		}
+		for(i=1;i<=7;i++){
+			$('#modelo1-frente1-degrade'+i).css('opacity',0);
+			$('#modelo1-frente2-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-espalda-degrade'+i).css('opacity',0);
+			$('#modelo1-manga1-degrade'+i).css('opacity',0);
+			$('#modelo1-manga2-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-manga1-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-manga2-degrade'+i).css('opacity',0);
+			$('#modelo1-cuello-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-cuello-degrade'+i).css('opacity',0);
+			$('#modelo1-bolsillos-degrade'+i).css('opacity',0);
+		}
+	}
+	if(val == 'cuerpo'){
+		for(i=1;i<=1;i++){
+			$('#modelo1-frente1-trama'+i).css('opacity',0);
+			$('#modelo1-frente2-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-espalda-trama'+i).css('opacity',0);
+		}
+		for(i=1;i<=7;i++){
+			$('#modelo1-frente1-degrade'+i).css('opacity',0);
+			$('#modelo1-frente2-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-espalda-degrade'+i).css('opacity',0);
+		}
+	}
+	if(val == 'mangas'){
+		for(i=1;i<=1;i++){
+			$('#modelo1-manga1-trama'+i).css('opacity',0);
+			$('#modelo1-manga2-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-manga1-trama'+i).css('opacity',0);
+			$('#modelo1-dorso-manga2-trama'+i).css('opacity',0);
+		}
+		for(i=1;i<=7;i++){
+			$('#modelo1-manga1-degrade'+i).css('opacity',0);
+			$('#modelo1-manga2-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-manga1-degrade'+i).css('opacity',0);
+			$('#modelo1-dorso-manga2-degrade'+i).css('opacity',0);
+		}
+	}
+}
+function seleccionaLugar(tipo,id,orden,relacionado){
+	$('#seleccion_listado_1').removeClass('seleccionado');
+	if(tipo == 'frente'){
+		var estatus_zona = $('.frente').css('display');
+		if(estatus_zona == 'none'){
+			$('.dorso').fadeOut(0);
+			$('.frente').fadeIn(0);
+			$('.thumb-frente').fadeOut();
+			$('.thumb-dorso').fadeIn();
+		}
+	}
+	if(tipo == 'dorso'){
+		var estatus_zona = $('.dorso').css('display');
+		if(estatus_zona == 'none'){
+			$('.frente').fadeOut(0);
+			$('.dorso').fadeIn(0);
+			$('.thumb-dorso').fadeOut();
+			$('.thumb-frente').fadeIn();
+		}
+	}
+
+	$('.mask-vacia').css('opacity',0);
+
+	$('#mask-'+id).css('opacity',1);
+	$('#mask-'+id+' img').attr('src','uploads/trama.php?img1='+id+'-reverso.png&img2=trama-seleccionado.png');
+	if(relacionado != ''){
+		$('#mask-'+relacionado).css('opacity',1);
+		$('#mask-'+relacionado+' img').attr('src','uploads/trama.php?img1='+id+'-reverso.png&img2=trama-seleccionado.png');
+	}
+
+	$('#seleccion').attr('value',id);
+	$('#relacionado').attr('value',relacionado);
+	$('.lista-opcion').removeClass('seleccionado');
+	$('.lista-titulo').removeClass('seleccionado');
+	$('#seleccion_listado_'+orden).addClass('seleccionado');
+	$('#paso2-color').fadeIn();
+
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('paso2-color');
+		despliegaPartes();
+	}
+}
+function seleccionaLugarImagen(tipo,id,orden,relacionado){
+	if(tipo == 'frente'){
+		var estatus_zona = $('.frente').css('display');
+		if(estatus_zona == 'none'){
+			$('.dorso').fadeOut(0);
+			$('.frente').fadeIn(0);
+			$('.thumb-frente').fadeOut();
+			$('.thumb-dorso').fadeIn();
+		}
+	}
+	if(tipo == 'dorso'){
+		var estatus_zona = $('.dorso').css('display');
+		if(estatus_zona == 'none'){
+			$('.frente').fadeOut(0);
+			$('.dorso').fadeIn(0);
+			$('.thumb-dorso').fadeOut();
+			$('.thumb-frente').fadeIn();
+		}
+	}
+
+	$('.mask-vacia').css('opacity',0);
+
+	$('#mask-'+id).css('opacity',1);
+	if(relacionado != ''){
+		$('#mask-'+relacionado).css('opacity',1);
+	}
+
+	$('#seleccion').attr('value',id);
+	$('#relacionado').attr('value',relacionado);
+	$('.lista-opcion').removeClass('seleccionado');
+	$('.lista-titulo').removeClass('seleccionado');
+	$('.partes-'+orden).addClass('seleccionado');
+	$('#paso2-color').fadeIn();
+
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('buzos-modelos');
+		$('.paso-2-lista-partes').fadeOut(50);
+		$('.titulo-columna-flecha').addClass('flecha-abre');
+	}
+}
+function seleccionaLugarGrupo(array,orden){
+	$('.mask-vacia').css('opacity',0);
+	var array_grupo = array.split('|');
+	for (i=0; i < array_grupo.length; i++){
+		if(array_grupo[i] != ''){
+			$('#mask-'+array_grupo[i]).css('opacity',1);
+		}
+	}
+	$('#seleccion').attr('value',array);
+	$('#relacionado').attr('value',relacionado);
+	$('.lista-opcion').removeClass('seleccionado');
+	$('.lista-titulo').removeClass('seleccionado');
+	$('#seleccion_listado_'+orden).addClass('seleccionado');
+	$('#paso2-color').fadeIn();
+
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('buzos-modelos');
+		$('.paso-2-lista-partes').fadeOut(50);
+		$('.titulo-columna-flecha').addClass('flecha-abre');
+	}
+}
+function pintaPleno(val2){
+	val1 = $('#seleccion').attr('value');
+
+	guardaPaso2();
+	var ultimoValor = $('#input_'+val1).attr('value');
+	var ultimaFuncion = $('#actual_funcion').attr('value');
+	$('#ultimo_valor').attr('value',ultimoValor);
+	$('#actual_valor').attr('value',val2);
+	$('#ultima_parte').attr('value',val1);
+	$('#ultima_funcion').attr('value',ultimaFuncion);
+	$('#actual_funcion').attr('value','pintaPleno');
+
+	var array_partes = val1.split('|');
+	var total_partes = array_partes.length;
+	if(total_partes > 1){
+		for (i=0; i < total_partes; i++){
+			if(array_partes[i] != ''){
+				$('#mask-'+array_partes[i]).css('opacity',0);
+				$('#mask-'+array_partes[i]).removeClass('mask-vacia');
+				$('#'+array_partes[i]).attr('src','uploads/color.php?img='+array_partes[i]+val2);
+				$('#'+array_partes[i]).css('opacity',1);
+
+				$('#popup-mask-'+array_partes[i]).css('opacity',0);
+				$('#popup-mask-'+array_partes[i]).removeClass('mask-vacia');
+				$('#popup-'+array_partes[i]).attr('src','uploads/color.php?img='+array_partes[i]+val2);
+				$('#popup-'+array_partes[i]).css('opacity',1);
+
+				$('#input_'+array_partes[i]).attr("value", val2);
+			}
+		}
+	}else{
+		val3 = $('#relacionado').attr('value');
+		$('#mask-'+val1).css('opacity',0);
+		$('#mask-'+val1).removeClass('mask-vacia');
+		$('#'+val1).attr('src','uploads/color.php?img='+val1+val2);
+		$('#'+val1).css('opacity',1);
+		$('#input_'+val1).attr("value", val2);
+		if(val3 != ''){
+			$('#mask-'+val3).css('opacity',0);
+			$('#mask-'+val3).removeClass('mask-vacia');
+			$('#'+val3).attr('src','uploads/color.php?img='+val3+val2);
+			$('#'+val3).css('opacity',1);
+			$('#input_'+val3).attr("value", val2);
+		}
+
+		val3 = $('#relacionado').attr('value');
+		$('#popup-mask-'+val1).css('opacity',0);
+		$('#popup-mask-'+val1).removeClass('mask-vacia');
+		$('#popup-'+val1).attr('src','uploads/color.php?img='+val1+val2);
+		$('#popup-'+val1).css('opacity',1);
+		if(val3 != ''){
+			$('#popup-mask-'+val3).css('opacity',0);
+			$('#popup-mask-'+val3).removeClass('mask-vacia');
+			$('#popup-'+val3).attr('src','uploads/color.php?img='+val3+val2);
+			$('#popup-'+val3).css('opacity',1);
+		}
+	}
+	$('.row-btn').fadeIn();
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('buzos-modelos');
+	}
+}
+function pintaDegrade(val2){
+	val1 = $('#seleccion').attr('value');
+
+	guardaPaso2();
+	var ultimoValor = $('#input_'+val1).attr('value');
+	var ultimaFuncion = $('#actual_funcion').attr('value');
+	$('#ultimo_valor').attr('value',ultimoValor);
+	$('#actual_valor').attr('value',val2);
+	$('#ultima_parte').attr('value',val1);
+	$('#ultima_funcion').attr('value',ultimaFuncion);
+	$('#actual_funcion').attr('value','pintaDegrade');
+
+	var array_partes = val1.split('|');
+	var total_partes = array_partes.length;
+	if(total_partes > 1){
+		for (i=0; i < total_partes; i++){
+			if(array_partes[i] != ''){
+				$('#mask-'+array_partes[i]+' img').attr('src','uploads/trama.php?img1='+array_partes[i]+'-reverso.png&img2='+val2+'.png');
+				$('#mask-'+array_partes[i]).css('opacity',1);
+				$('#'+array_partes[i]).css('opacity',0);
+				$('#mask-'+array_partes[i]).removeClass('mask-vacia');
+
+				$('#popup-mask-'+array_partes[i]+' img').attr('src','uploads/trama.php?img1='+array_partes[i]+'-reverso.png&img2='+val2+'.png');
+				$('#popup-mask-'+array_partes[i]).css('opacity',1);
+				$('#popup-'+array_partes[i]).css('opacity',0);
+				$('#popup-mask-'+array_partes[i]).removeClass('mask-vacia');
+
+				$('#input_'+array_partes[i]).attr("value", val2);
+			}
+		}
+	}else{
+		val3 = $('#relacionado').attr('value');
+		$('#mask-'+val1+' img').attr('src','uploads/trama.php?img1='+val1+'-reverso.png&img2='+val2+'.png');
+		$('#mask-'+val1).css('opacity',1);
+		$('#'+val1).css('opacity',0);
+		$('#mask-'+val1).removeClass('mask-vacia');
+
+		$('#popup-mask-'+val1+' img').attr('src','uploads/trama.php?img1='+val1+'-reverso.png&img2='+val2+'.png');
+		$('#popup-mask-'+val1).css('opacity',1);
+		$('#popup-'+val1).css('opacity',0);
+		$('#popup-mask-'+val1).removeClass('mask-vacia');
+
+		$('#input_'+val1).attr("value", val2);
+		if(val3 != ''){
+			$('#mask-'+val3+' img').attr('src','uploads/trama.php?img1='+val3+'-reverso.png&img2='+val2+'.png');
+			$('#mask-'+val3).css('opacity',1);
+			$('#'+val3).css('opacity',0);
+			$('#mask-'+val3).removeClass('mask-vacia');
+
+			$('#popup-mask-'+val3+' img').attr('src','uploads/trama.php?img1='+val3+'-reverso.png&img2='+val2+'.png');
+			$('#popup-mask-'+val3).css('opacity',1);
+			$('#popup-'+val3).css('opacity',0);
+			$('#popup-mask-'+val3).removeClass('mask-vacia');
+
+			$('#input_'+val3).attr("value", val2);
+		}
+	}
+	$('.row-btn').fadeIn();
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('buzos-modelos');
+	}
+}
+function pintaTrama(val2){
+	val1 = $('#seleccion').attr('value');
+
+	guardaPaso2();
+	var ultimoValor = $('#input_'+val1).attr('value');
+	var ultimaFuncion = $('#actual_funcion').attr('value');
+	$('#ultimo_valor').attr('value',ultimoValor);
+	$('#actual_valor').attr('value',val2);
+	$('#ultima_parte').attr('value',val1);
+	$('#ultima_funcion').attr('value',ultimaFuncion);
+	$('#actual_funcion').attr('value','pintaTrama');
+
+	var array_partes = val1.split('|');
+	var total_partes = array_partes.length;
+	if(total_partes > 1){
+		for (i=0; i < total_partes; i++){
+			if(array_partes[i] != ''){
+				$('#mask-'+array_partes[i]+' img').attr('src','uploads/trama.php?img1='+array_partes[i]+'-reverso.png&img2='+val2+'.png');
+				$('#mask-'+array_partes[i]).css('opacity',1);
+				$('#'+array_partes[i]).css('opacity',0);
+				$('#mask-'+array_partes[i]).removeClass('mask-vacia');
+				$('#input_'+array_partes[i]).attr("value", val2);
+
+				$('#popup-mask-'+array_partes[i]+' img').attr('src','uploads/trama.php?img1='+array_partes[i]+'-reverso.png&img2='+val2+'.png');
+				$('#popup-mask-'+array_partes[i]).css('opacity',1);
+				$('#popup-'+array_partes[i]).css('opacity',0);
+				$('#popup-mask-'+array_partes[i]).removeClass('mask-vacia');
+			}
+		}
+	}else{
+		val3 = $('#relacionado').attr('value');
+		$('#mask-'+val1+' img').attr('src','uploads/trama.php?img1='+val1+'-reverso.png&img2='+val2+'.png');
+		$('#mask-'+val1).css('opacity',1);
+		$('#'+val1).css('opacity',0);
+		$('#mask-'+val1).removeClass('mask-vacia');
+
+		$('#popup-mask-'+val1+' img').attr('src','uploads/trama.php?img1='+val1+'-reverso.png&img2='+val2+'.png');
+		$('#popup-mask-'+val1).css('opacity',1);
+		$('#popup-'+val1).css('opacity',0);
+		$('#popup-mask-'+val1).removeClass('mask-vacia');
+
+		$('#input_'+val1).attr("value", val2);
+		if(val3 != ''){
+			$('#mask-'+val3+' img').attr('src','uploads/trama.php?img1='+val3+'-reverso.png&img2='+val2+'.png');
+			$('#mask-'+val3).css('opacity',1);
+			$('#'+val3).css('opacity',0);
+			$('#mask-'+val3).removeClass('mask-vacia');
+
+			$('#popup-mask-'+val3+' img').attr('src','uploads/trama.php?img1='+val3+'-reverso.png&img2='+val2+'.png');
+			$('#popup-mask-'+val3).css('opacity',1);
+			$('#popup-'+val3).css('opacity',0);
+			$('#popup-mask-'+val3).removeClass('mask-vacia');
+
+			$('#input_'+val3).attr("value", val2);
+		}
+	}
+	$('.row-btn').fadeIn();
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		scrollScreen('buzos-modelos');
+	}
+}
+function seleccionaTipo(val){
+	$('#tipo').attr('value',val);
+	for(i=1;i<=2;i++){
+		$('#seleccion_listado_'+i).removeClass('seleccionado');
+	}
+	$('#seleccion_listado_'+val).addClass('seleccionado');
+	if(val == '2'){
+		$('.ubicaciones-aplique-frente').fadeOut(0);
+		$('.ubicaciones-aplique-dorso').fadeOut(0);
+		$('.ubicaciones-bordado-frente').fadeIn(0);
+		$('.ubicaciones-bordado-dorso').fadeIn(0);
+	}
+	if(val == '1'){
+		$('.ubicaciones-bordado-frente').fadeOut(0);
+		$('.ubicaciones-bordado-dorso').fadeOut(0);
+		$('.ubicaciones-aplique-frente').fadeIn(0);
+		$('.ubicaciones-aplique-dorso').fadeIn(0);
+	}
+	$('#paso3-lugar').fadeIn();
+
+	$('#paso3-palabra').fadeOut(0);
+	$('#paso3-color-bordado').fadeOut(0);
+	$('#paso3-color-aplique').fadeOut(0);
+	verPocisiones();
+	$('.paso2-punto3-mobile').fadeOut();
+}
+function seleccionaTipografia(){
+	var modelo = $('#buzo').attr('value');
+	var tipo = $('#tipo').attr('value');
+	var broserWidth = $(window).width();
+	if(broserWidth > 767){
+		var tipografia = $('#aplique-font-'+tipo).children('option:selected').val();
+		$('#aplique-texto').removeClass();
+		$('#aplique-texto').addClass('normal');
+		$('#aplique-texto').addClass(tipografia);
+	}else{
+		var tipografia = $('#aplique-font-'+tipo+'-mobile').children('option:selected').val();
+		$('#aplique-texto-mobile').removeClass();
+		$('#aplique-texto-mobile').addClass('normal');
+		$('#aplique-texto-mobile').addClass(tipografia);
+	}
+	var ubicacion = $('#seleccion').attr('value');
+	if(ubicacion != ''){
+		$('#ubicacion'+ubicacion).removeClass('BernardMT-Condensed');
+		$('#ubicacion'+ubicacion).removeClass('Bauhause');
+		$('#ubicacion'+ubicacion).removeClass('ArialBlack');
+		$('#ubicacion'+ubicacion).removeClass('BookAntiqua-Bold');
+		$('#ubicacion'+ubicacion).removeClass('CollegeBold');
+		$('#ubicacion'+ubicacion).removeClass('CooperBlack');
+		$('#ubicacion'+ubicacion).removeClass('BrannbollFS');
+		$('#ubicacion'+ubicacion).removeClass('ForteMT');
+		$('#ubicacion'+ubicacion).removeClass('Freshman');
+		$('#ubicacion'+ubicacion).removeClass('GoudyStout');
+		$('#ubicacion'+ubicacion).removeClass('Impact');
+		$('#ubicacion'+ubicacion).removeClass('KomikaAxis');
+		$('#ubicacion'+ubicacion).removeClass('LatinWide');
+		$('#ubicacion'+ubicacion).removeClass('Newland');
+		$('#ubicacion'+ubicacion).removeClass('ObelixPro');
+		$('#ubicacion'+ubicacion).removeClass('ShowcardGothic');
+		$('#ubicacion'+ubicacion).removeClass('AlexandraPersonalUse-Regular');
+		$('#ubicacion'+ubicacion).removeClass('All_star');
+		$('#ubicacion'+ubicacion).removeClass('AngryBirds');
+		$('#ubicacion'+ubicacion).removeClass('ArialRounded');
+		$('#ubicacion'+ubicacion).removeClass('BerlinSans');
+		$('#ubicacion'+ubicacion).removeClass('Code-Bold');
+		$('#ubicacion'+ubicacion).removeClass('ComicSans');
+		$('#ubicacion'+ubicacion).removeClass('KristenITC');
+		$('#ubicacion'+ubicacion).removeClass('Shenanigans');
+		$('#ubicacion'+ubicacion).removeClass('Timotheos');
+		$('#ubicacion'+ubicacion).removeClass('TypeWrong');
+		$('#ubicacion'+ubicacion).removeClass('UnicornCalligraphy');
+		$('#ubicacion'+ubicacion).addClass(tipografia);
+
+		$('#popup-ubicacion'+ubicacion).removeClass('BernardMT-Condensed');
+		$('#popup-ubicacion'+ubicacion).removeClass('Bauhause');
+		$('#popup-ubicacion'+ubicacion).removeClass('ArialBlack');
+		$('#popup-ubicacion'+ubicacion).removeClass('BookAntiqua-Bold');
+		$('#popup-ubicacion'+ubicacion).removeClass('CollegeBold');
+		$('#popup-ubicacion'+ubicacion).removeClass('CooperBlack');
+		$('#popup-ubicacion'+ubicacion).removeClass('BrannbollFS');
+		$('#popup-ubicacion'+ubicacion).removeClass('ForteMT');
+		$('#popup-ubicacion'+ubicacion).removeClass('Freshman');
+		$('#popup-ubicacion'+ubicacion).removeClass('GoudyStout');
+		$('#popup-ubicacion'+ubicacion).removeClass('Impact');
+		$('#popup-ubicacion'+ubicacion).removeClass('KomikaAxis');
+		$('#popup-ubicacion'+ubicacion).removeClass('LatinWide');
+		$('#popup-ubicacion'+ubicacion).removeClass('Newland');
+		$('#popup-ubicacion'+ubicacion).removeClass('ObelixPro');
+		$('#popup-ubicacion'+ubicacion).removeClass('ShowcardGothic');
+		$('#popup-ubicacion'+ubicacion).removeClass('AlexandraPersonalUse-Regular');
+		$('#popup-ubicacion'+ubicacion).removeClass('All_star');
+		$('#popup-ubicacion'+ubicacion).removeClass('AngryBirds');
+		$('#popup-ubicacion'+ubicacion).removeClass('ArialRounded');
+		$('#popup-ubicacion'+ubicacion).removeClass('BerlinSans');
+		$('#popup-ubicacion'+ubicacion).removeClass('Code-Bold');
+		$('#popup-ubicacion'+ubicacion).removeClass('ComicSans');
+		$('#popup-ubicacion'+ubicacion).removeClass('KristenITC');
+		$('#popup-ubicacion'+ubicacion).removeClass('Shenanigans');
+		$('#popup-ubicacion'+ubicacion).removeClass('Timotheos');
+		$('#popup-ubicacion'+ubicacion).removeClass('TypeWrong');
+		$('#popup-ubicacion'+ubicacion).removeClass('UnicornCalligraphy');
+		$('#popup-ubicacion'+ubicacion).addClass(tipografia);
+	}
+	$('#input_modelo'+modelo+'-font-texto'+ubicacion).attr('value',tipografia);
+	if(tipo == 2){
+		$('#paso3-color-bordado').fadeIn();
+		$('#paso3-color-bordado').css('display','inline-block');
+	}else{
+		$('#paso3-color-aplique').fadeIn();
+		$('#paso3-color-aplique').css('display','inline-block');
+	}
+}
+function seleccionaTipografiaMobile(tipografia){
+	$('#aplique-texto-mobile').removeClass('BernardMT-Condensed');
+	$('#aplique-texto-mobile').removeClass('Bauhause');
+	$('#aplique-texto-mobile').removeClass('ArialBlack');
+	$('#aplique-texto-mobile').removeClass('BookAntiqua-Bold');
+	$('#aplique-texto-mobile').removeClass('CollegeBold');
+	$('#aplique-texto-mobile').removeClass('CooperBlack');
+	$('#aplique-texto-mobile').removeClass('BrannbollFS');
+	$('#aplique-texto-mobile').removeClass('ForteMT');
+	$('#aplique-texto-mobile').removeClass('Freshman');
+	$('#aplique-texto-mobile').removeClass('GoudyStout');
+	$('#aplique-texto-mobile').removeClass('Impact');
+	$('#aplique-texto-mobile').removeClass('KomikaAxis');
+	$('#aplique-texto-mobile').removeClass('LatinWide');
+	$('#aplique-texto-mobile').removeClass('Newland');
+	$('#aplique-texto-mobile').removeClass('ObelixPro');
+	$('#aplique-texto-mobile').removeClass('ShowcardGothic');
+	$('#aplique-texto-mobile').removeClass('AlexandraPersonalUse-Regular');
+	$('#aplique-texto-mobile').removeClass('All_star');
+	$('#aplique-texto-mobile').removeClass('AngryBirds');
+	$('#aplique-texto-mobile').removeClass('ArialRounded');
+	$('#aplique-texto-mobile').removeClass('BerlinSans');
+	$('#aplique-texto-mobile').removeClass('Code-Bold');
+	$('#aplique-texto-mobile').removeClass('ComicSans');
+	$('#aplique-texto-mobile').removeClass('KristenITC');
+	$('#aplique-texto-mobile').removeClass('Shenanigans');
+	$('#aplique-texto-mobile').removeClass('Timotheos');
+	$('#aplique-texto-mobile').removeClass('TypeWrong');
+	$('#aplique-texto-mobile').removeClass('UnicornCalligraphy');
+	$('#aplique-texto-mobile').addClass(tipografia);
+}
+function seleccionaUbicacion(val,font1,font2,font3,font4,min,max,angulo,nro){
+	var tipo = $('#tipo').attr('value');
+
+	if(tipo == 1){
+		$('[data-name="bordado-'+nro+'"]').css('visibility','hidden');
+	}else{
+		$('[data-name="aplique-'+nro+'"]').css('visibility','hidden');
+	}
+
+	var buzo = $('#buzo').attr('value');
+	var ubicaciones_array = $('#ubicaciones_array').attr('value');
+	//	$('.texto-ubicacion').fadeOut(0);
+	$('#ubicacion'+val).fadeIn(0);
+	$('#borrar-'+val).fadeIn(0);
+
+	var array_ubicaciones = ubicaciones_array.split('|');
+	for (i=0; i < array_ubicaciones.length; i++){
+		if(array_ubicaciones[i] != '' && array_ubicaciones[i] != val){
+			var tx_ubicaciones = $('#ubicacion'+array_ubicaciones[i]).hasClass('ubicacion-texto')
+			if(tx_ubicaciones == false){
+				$('#ubicacion'+array_ubicaciones[i]).css('opacity',0);
+			}
+		}
+	}
+	$('#ubicacion'+val+' p').attr('onclick','');
+	/*
+	for(i=1;i<=40;i++){
+		$('.texto-ubicacion'+i).removeClass('texto-ubicacion-seleccionado');
+	}
+	$('#ubicacion'+val).addClass('texto-ubicacion-seleccionado');
+	*/
+	$('#seleccion').attr('value',val);
+
+	var broserWidth = $(window).width();
+	if(broserWidth > 767){
+		$('#paso3-palabra').fadeIn();
+		$('#aplique-font-1').fadeOut(0);
+		$('#aplique-font-2').fadeOut(0);
+		$('#aplique-font-'+tipo).fadeIn(0);
+		$('#aplique-font-'+tipo).prop('disabled', false);
+		$('#aplique-texto').attr('value', '');
+		$('#aplique-texto').prop('disabled', false);
+		$('#aplique-texto').attr('minlength',min);
+		$('#aplique-texto').attr('maxlength',max);
+
+		$('#aplique-texto').removeClass('BernardMT-Condensed');
+		$('#aplique-texto').removeClass('Bauhause');
+		$('#aplique-texto').removeClass('ArialBlack');
+		$('#aplique-texto').removeClass('BookAntiqua-Bold');
+		$('#aplique-texto').removeClass('CollegeBold');
+		$('#aplique-texto').removeClass('CooperBlack');
+		$('#aplique-texto').removeClass('BrannbollFS');
+		$('#aplique-texto').removeClass('ForteMT');
+		$('#aplique-texto').removeClass('Freshman');
+		$('#aplique-texto').removeClass('GoudyStout');
+		$('#aplique-texto').removeClass('Impact');
+		$('#aplique-texto').removeClass('KomikaAxis');
+		$('#aplique-texto').removeClass('LatinWide');
+		$('#aplique-texto').removeClass('Newland');
+		$('#aplique-texto').removeClass('ObelixPro');
+		$('#aplique-texto').removeClass('ShowcardGothic');
+		$('#aplique-texto').removeClass('AlexandraPersonalUse-Regular');
+		$('#aplique-texto').removeClass('All_star');
+		$('#aplique-texto').removeClass('AngryBirds');
+		$('#aplique-texto').removeClass('ArialRounded');
+		$('#aplique-texto').removeClass('BerlinSans');
+		$('#aplique-texto').removeClass('Code-Bold');
+		$('#aplique-texto').removeClass('ComicSans');
+		$('#aplique-texto').removeClass('KristenITC');
+		$('#aplique-texto').removeClass('Shenanigans');
+		$('#aplique-texto').removeClass('Timotheos');
+		$('#aplique-texto').removeClass('TypeWrong');
+		$('#aplique-texto').removeClass('UnicornCalligraphy');
+	}else{
+		$('.paso2-punto3-mobile').fadeIn(0);
+		$('#aplique-texto-mobile').attr('value', '');
+		$('#aplique-texto-mobile').attr('minlength',min);
+		$('#aplique-texto-mobile').attr('maxlength',max);
+
+		$('#aplique-texto-mobile').removeClass('BernardMT-Condensed');
+		$('#aplique-texto-mobile').removeClass('Bauhause');
+		$('#aplique-texto-mobile').removeClass('ArialBlack');
+		$('#aplique-texto-mobile').removeClass('BookAntiqua-Bold');
+		$('#aplique-texto-mobile').removeClass('CollegeBold');
+		$('#aplique-texto-mobile').removeClass('CooperBlack');
+		$('#aplique-texto-mobile').removeClass('BrannbollFS');
+		$('#aplique-texto-mobile').removeClass('ForteMT');
+		$('#aplique-texto-mobile').removeClass('Freshman');
+		$('#aplique-texto-mobile').removeClass('GoudyStout');
+		$('#aplique-texto-mobile').removeClass('Impact');
+		$('#aplique-texto-mobile').removeClass('KomikaAxis');
+		$('#aplique-texto-mobile').removeClass('LatinWide');
+		$('#aplique-texto-mobile').removeClass('Newland');
+		$('#aplique-texto-mobile').removeClass('ObelixPro');
+		$('#aplique-texto-mobile').removeClass('ShowcardGothic');
+		$('#aplique-texto-mobile').removeClass('AlexandraPersonalUse-Regular');
+		$('#aplique-texto-mobile').removeClass('All_star');
+		$('#aplique-texto-mobile').removeClass('AngryBirds');
+		$('#aplique-texto-mobile').removeClass('ArialRounded');
+		$('#aplique-texto-mobile').removeClass('BerlinSans');
+		$('#aplique-texto-mobile').removeClass('Code-Bold');
+		$('#aplique-texto-mobile').removeClass('ComicSans');
+		$('#aplique-texto-mobile').removeClass('KristenITC');
+		$('#aplique-texto-mobile').removeClass('Shenanigans');
+		$('#aplique-texto-mobile').removeClass('Timotheos');
+		$('#aplique-texto-mobile').removeClass('TypeWrong');
+		$('#aplique-texto-mobile').removeClass('UnicornCalligraphy');
+		openPopupTextos();
+	}
+	$('#min_size').attr('value',font1);
+	$('#max_size').attr('value',font2);
+	$('#mobile_min_size').attr('value',font3);
+	$('#mobile_max_size').attr('value',font4);
+	$('#tx_angulo').attr('value',angulo);
+	$('#nro_seleccion').attr('value',nro);
+	$('.btn-posiciones').fadeIn(50);
+}
+function tamanoTexto(val){
+	var modelo = $('#buzo').attr('value');
+	var ubicacion = $('#seleccion').attr('value');
+	$('#ubicacion'+ubicacion).css('font-size',val+'vw');
+	$('#input_modelo'+modelo+'-tamano-texto'+ubicacion).attr('value',val);
+	$('.tamano-opcion').removeClass('seleccionado');
+	$('#seleccion_tamano_'+val).addClass('seleccionado');
+	var tipo = $('#tipo').attr('value');
+	if(tipo == 2){
+		$('#paso3-color-bordado').fadeIn();
+		$('#paso3-color-bordado').css('display','inline-block');
+	}else{
+		$('#paso3-color-aplique').fadeIn();
+		$('#paso3-color-aplique').css('display','inline-block');
+	}
+}
+function muestraTexto(){
+	var tipo = $('#tipo').attr('value');
+	var modelo = $('#buzo').attr('value');
+	var broserWidth = $(window).width();
+	if(broserWidth > 767){
+		var texto = $('#aplique-texto').attr('value');
+	}else{
+		var texto = $('#aplique-texto-mobile').attr('value');
+	}
+	if(texto == ''){
+			var texto = 'texto';
+	}
+	var ubicacion = $('#seleccion').attr('value');
+	var angulo = 	parseFloat($('#tx_angulo').attr('value'));
+	var nro = $('#nro_seleccion').attr('value');
+
+	if(broserWidth > 767){
+		var tamanoMinimo = parseFloat($('#min_size').attr('value'));
+		var tamanoMaximo = parseFloat($('#max_size').attr('value'));
+		var cantidadCaracteres = $('#aplique-texto').val().length;
+		var caracteresMinimo = parseInt($('#aplique-texto').attr('minlength'));
+		var caracteresMaximo = parseInt($('#aplique-texto').attr('maxlength'));
+	}else{
+		var tamanoMinimo = parseFloat($('#mobile_min_size').attr('value'));
+		var tamanoMaximo = parseFloat($('#mobile_max_size').attr('value'));
+		var cantidadCaracteres = $('#aplique-texto-mobile').val().length;
+		var caracteresMinimo = parseInt($('#aplique-texto-mobile').attr('minlength'));
+		var caracteresMaximo = parseInt($('#aplique-texto-mobile').attr('maxlength'));
+	}
+
+	var calculaTamano = tamanoMaximo - (((tamanoMaximo - tamanoMinimo) / (caracteresMaximo - caracteresMinimo)) * cantidadCaracteres);
+	if(calculaTamano < tamanoMinimo){
+		var calculaTamano = tamanoMinimo;
+	}
+
+	var attrBorra = $('#borrar-'+ubicacion).attr('onclick');
+
+	if(broserWidth > 767){
+		$('#ubicacion'+ubicacion).css('font-size',calculaTamano+'vw');
+		$('#ubicacion'+ubicacion).css('line-height',calculaTamano+'vw');
+		$('#popup-ubicacion'+ubicacion).css('font-size',calculaTamano+'vw');
+		$('#popup-ubicacion'+ubicacion).css('line-height',calculaTamano+'vw');
+		$('#input_modelo'+modelo+'-tamano-texto'+ubicacion).attr('value',calculaTamano);
+	}else{
+		$('#ubicacion'+ubicacion).css('font-size',calculaTamano+'vw');
+		$('#ubicacion'+ubicacion).css('line-height',calculaTamano+'vw');
+		$('#popup-ubicacion'+ubicacion).css('font-size',calculaTamano+'vw');
+		$('#popup-ubicacion'+ubicacion).css('line-height',calculaTamano+'vw');
+		$('#input_modelo'+modelo+'-tamano-texto'+ubicacion).attr('value',calculaTamano);
+	}
+
+
+	var tipografia_actual = 	$('#input_modelo'+modelo+'-font-texto'+ubicacion).attr('value');
+	if(tipografia_actual == ''){
+		$('#input_modelo'+modelo+'-font-texto'+ubicacion).attr('value','CollegeBold');
+		$('#ubicacion'+ubicacion).removeClass('BernardMT-Condensed');
+		$('#ubicacion'+ubicacion).removeClass('Bauhause');
+		$('#ubicacion'+ubicacion).removeClass('ArialBlack');
+		$('#ubicacion'+ubicacion).removeClass('BookAntiqua-Bold');
+		$('#ubicacion'+ubicacion).removeClass('CollegeBold');
+		$('#ubicacion'+ubicacion).removeClass('CooperBlack');
+		$('#ubicacion'+ubicacion).removeClass('BrannbollFS');
+		$('#ubicacion'+ubicacion).removeClass('ForteMT');
+		$('#ubicacion'+ubicacion).removeClass('Freshman');
+		$('#ubicacion'+ubicacion).removeClass('GoudyStout');
+		$('#ubicacion'+ubicacion).removeClass('Impact');
+		$('#ubicacion'+ubicacion).removeClass('KomikaAxis');
+		$('#ubicacion'+ubicacion).removeClass('LatinWide');
+		$('#ubicacion'+ubicacion).removeClass('Newland');
+		$('#ubicacion'+ubicacion).removeClass('ObelixPro');
+		$('#ubicacion'+ubicacion).removeClass('ShowcardGothic');
+		$('#ubicacion'+ubicacion).removeClass('AlexandraPersonalUse-Regular');
+		$('#ubicacion'+ubicacion).removeClass('All_star');
+		$('#ubicacion'+ubicacion).removeClass('AngryBirds');
+		$('#ubicacion'+ubicacion).removeClass('ArialRounded');
+		$('#ubicacion'+ubicacion).removeClass('BerlinSans');
+		$('#ubicacion'+ubicacion).removeClass('Code-Bold');
+		$('#ubicacion'+ubicacion).removeClass('ComicSans');
+		$('#ubicacion'+ubicacion).removeClass('KristenITC');
+		$('#ubicacion'+ubicacion).removeClass('Shenanigans');
+		$('#ubicacion'+ubicacion).removeClass('Timotheos');
+		$('#ubicacion'+ubicacion).removeClass('TypeWrong');
+		$('#ubicacion'+ubicacion).removeClass('UnicornCalligraphy');
+		$('#ubicacion'+ubicacion).addClass('CollegeBold');
+
+		$('#popup-ubicacion'+ubicacion).removeClass('BernardMT-Condensed');
+		$('#popup-ubicacion'+ubicacion).removeClass('Bauhause');
+		$('#popup-ubicacion'+ubicacion).removeClass('ArialBlack');
+		$('#popup-ubicacion'+ubicacion).removeClass('BookAntiqua-Bold');
+		$('#popup-ubicacion'+ubicacion).removeClass('CollegeBold');
+		$('#popup-ubicacion'+ubicacion).removeClass('CooperBlack');
+		$('#popup-ubicacion'+ubicacion).removeClass('BrannbollFS');
+		$('#popup-ubicacion'+ubicacion).removeClass('ForteMT');
+		$('#popup-ubicacion'+ubicacion).removeClass('Freshman');
+		$('#popup-ubicacion'+ubicacion).removeClass('GoudyStout');
+		$('#popup-ubicacion'+ubicacion).removeClass('Impact');
+		$('#popup-ubicacion'+ubicacion).removeClass('KomikaAxis');
+		$('#popup-ubicacion'+ubicacion).removeClass('LatinWide');
+		$('#popup-ubicacion'+ubicacion).removeClass('Newland');
+		$('#popup-ubicacion'+ubicacion).removeClass('ObelixPro');
+		$('#popup-ubicacion'+ubicacion).removeClass('ShowcardGothic');
+		$('#popup-ubicacion'+ubicacion).removeClass('AlexandraPersonalUse-Regular');
+		$('#popup-ubicacion'+ubicacion).removeClass('All_star');
+		$('#popup-ubicacion'+ubicacion).removeClass('AngryBirds');
+		$('#popup-ubicacion'+ubicacion).removeClass('ArialRounded');
+		$('#popup-ubicacion'+ubicacion).removeClass('BerlinSans');
+		$('#popup-ubicacion'+ubicacion).removeClass('Code-Bold');
+		$('#popup-ubicacion'+ubicacion).removeClass('ComicSans');
+		$('#popup-ubicacion'+ubicacion).removeClass('KristenITC');
+		$('#popup-ubicacion'+ubicacion).removeClass('Shenanigans');
+		$('#popup-ubicacion'+ubicacion).removeClass('Timotheos');
+		$('#popup-ubicacion'+ubicacion).removeClass('TypeWrong');
+		$('#popup-ubicacion'+ubicacion).removeClass('UnicornCalligraphy');
+		$('#popup-ubicacion'+ubicacion).addClass('CollegeBold');
+	}
+	if(ubicacion != ''){
+		$('#ubicacion'+ubicacion).addClass('ubicacion-texto');
+		$('#ubicacion'+ubicacion).html('<p>'+texto+'<img src="im/buzo-texto-borrar.svg" class="borrar" alt="BORRAR" id="borrar-'+ubicacion+'" style="display: block;" onClick="'+attrBorra+'"></p>');
+		if(angulo != 0.00){
+			$('#ubicacion'+ubicacion).css('-ms-transform','rotate('+angulo+'deg)');
+			$('#ubicacion'+ubicacion).css('-webkit-transform','rotate('+angulo+'deg)');
+			$('#ubicacion'+ubicacion).css('transform','rotate('+angulo+'deg)');
+		}
+
+		$('#popup-ubicacion'+ubicacion).addClass('ubicacion-texto');
+		$('#popup-ubicacion'+ubicacion).html('<p>'+texto+'</p>');
+		if(angulo != 0.00){
+			$('#popup-ubicacion'+ubicacion).css('-ms-transform','rotate('+angulo+'deg)');
+			$('#popup-ubicacion'+ubicacion).css('-webkit-transform','rotate('+angulo+'deg)');
+			$('#popup-ubicacion'+ubicacion).css('transform','rotate('+angulo+'deg)');
+		}
+		$('#input_modelo'+modelo+'-texto'+ubicacion).attr('value',texto);
+	}
+	if(tipo == 2){
+		$('#paso3-color-bordado').fadeIn();
+		$('#paso3-color-bordado').css('display','inline-block');
+	}else{
+		$('#paso3-color-aplique').fadeIn();
+		$('#paso3-color-aplique').css('display','inline-block');
+	}
+}
+
+function borrarUbicacion(ubicacion,font1,font2,font3,font4,min,max,angulo,nro){
+
+	var ubicaciones_array = $('#ubicaciones_array').attr('value');
+	var array_ubicaciones = ubicaciones_array.split('|');
+	for (i=0; i < array_ubicaciones.length; i++){
+		if(array_ubicaciones[i] != ''){
+			$('#ubicacion'+array_ubicaciones[i]).css('opacity',1);
+		}
+	}
+	var modelo = $('#buzo').attr('value');
+	var tipo = $('#tipo').attr('value');
+
+	if(tipo == 1){
+	  $('[data-name="bordado-'+nro+'"]').css('visibility','visible');
+	}else{
+	  $('[data-name="aplique-'+nro+'"]').css('visibility','visible');
+	}
+
+	var vistaFrente = $('.frente').css('display');
+	var vistaDorso = $('.dorso').css('display');
+	$('#ubicacion'+ubicacion).removeClass('BernardMT-Condensed');
+	$('#ubicacion'+ubicacion).removeClass('Bauhause');
+	$('#ubicacion'+ubicacion).removeClass('ArialBlack');
+	$('#ubicacion'+ubicacion).removeClass('BookAntiqua-Bold');
+	$('#ubicacion'+ubicacion).removeClass('CollegeBold');
+	$('#ubicacion'+ubicacion).removeClass('CooperBlack');
+	$('#ubicacion'+ubicacion).removeClass('BrannbollFS');
+	$('#ubicacion'+ubicacion).removeClass('ForteMT');
+	$('#ubicacion'+ubicacion).removeClass('Freshman');
+	$('#ubicacion'+ubicacion).removeClass('GoudyStout');
+	$('#ubicacion'+ubicacion).removeClass('Impact');
+	$('#ubicacion'+ubicacion).removeClass('KomikaAxis');
+	$('#ubicacion'+ubicacion).removeClass('LatinWide');
+	$('#ubicacion'+ubicacion).removeClass('Newland');
+	$('#ubicacion'+ubicacion).removeClass('ObelixPro');
+	$('#ubicacion'+ubicacion).removeClass('ShowcardGothic');
+	$('#ubicacion'+ubicacion).removeClass('AlexandraPersonalUse-Regular');
+	$('#ubicacion'+ubicacion).removeClass('All_star');
+	$('#ubicacion'+ubicacion).removeClass('AngryBirds');
+	$('#ubicacion'+ubicacion).removeClass('ArialRounded');
+	$('#ubicacion'+ubicacion).removeClass('BerlinSans');
+	$('#ubicacion'+ubicacion).removeClass('Code-Bold');
+	$('#ubicacion'+ubicacion).removeClass('ComicSans');
+	$('#ubicacion'+ubicacion).removeClass('KristenITC');
+	$('#ubicacion'+ubicacion).removeClass('Shenanigans');
+	$('#ubicacion'+ubicacion).removeClass('Timotheos');
+	$('#ubicacion'+ubicacion).removeClass('TypeWrong');
+	$('#ubicacion'+ubicacion).removeClass('UnicornCalligraphy');
+	$('#ubicacion'+ubicacion).removeClass('ubicacion-texto');
+
+	$('#ubicacion'+ubicacion).removeClass('texto-borde');
+	for(i=1;i<=100;i++){
+		$('#ubicacion'+ubicacion).removeClass('color-pleno-'+i);
+		$('#ubicacion'+ubicacion).removeClass('color-borde-'+i);
+	}
+
+	$('#ubicacion'+ubicacion).css('-ms-transform','rotate(0deg)');
+	$('#ubicacion'+ubicacion).css('-webkit-transform','rotate(0deg)');
+	$('#ubicacion'+ubicacion).css('transform','rotate(0deg)');
+	var broserWidth = $(window).width();
+	if(broserWidth > 767){
+		$('#ubicacion'+ubicacion).css('font-size','1.5vw');
+		$('#ubicacion'+ubicacion).css('line-height','2.8vw');
+	}else{
+		$('#ubicacion'+ubicacion).css('font-size','18px');
+		$('#ubicacion'+ubicacion).css('line-height','34px');
+	}
+
+	$('#ubicacion'+ubicacion).html('<p onClick="seleccionaUbicacion(\''+ubicacion+'\',\''+font1+'\',\''+font2+'\',\''+font3+'\',\''+font4+'\',\''+min+'\',\''+max+'\',\''+angulo+'\',\''+nro+'\')">'+nro+'<img src="im/buzo-texto-borrar.svg" class="borrar" alt="BORRAR" id="borrar-'+ubicacion+'" style="display: block;" onClick="borrarUbicacion(\''+ubicacion+'\',\''+font1+'\',\''+font2+'\',\''+min+'\',\''+max+'\',\''+angulo+'\',\''+nro+'\')"></p>');
+	$('#seleccion').attr('value','');
+	$('#nro_seleccion').attr('value','');
+	$('#borrar-'+ubicacion).fadeOut(0);
+	if(tipo == 1){
+		if(vistaFrente == 'block'){
+			$('.frente .ubicaciones-aplique-frente .texto-ubicacion').fadeIn(50);
+		}else{
+			$('.dorso .ubicaciones-aplique-dorso .texto-ubicacion').fadeIn(50);
+		}
+
+	}else{
+		if(vistaFrente == 'block'){
+			$('.frente .ubicaciones-bordado-frente .texto-ubicacion').fadeIn(50);
+		}else{
+			$('.dorso .ubicaciones-bordado-dorso .texto-ubicacion').fadeIn(50);
+		}
+	}
+	$('#aplique-texto').attr('value','');
+	$('#input_modelo'+modelo+'-texto'+ubicacion).attr('value','');
+	$('#input_modelo'+modelo+'-color-texto'+ubicacion).attr('value','');
+	$('#input_modelo'+modelo+'-trama-texto'+ubicacion).attr('value','');
+	$('#input_modelo'+modelo+'-color-borde-texto'+ubicacion).attr('value','');
+	$('#input_modelo'+modelo+'-tamano-texto'+ubicacion).attr('value','');
+	$('#input_modelo'+modelo+'-font-texto'+ubicacion).attr('value','');
+}
+function verPocisiones(){
+	var modelo = $('#buzo').attr('value');
+	var tipo = $('#tipo').attr('value');
+	var vistaFrente = $('.frente').css('display');
+	var vistaDorso = $('.dorso').css('display');
+	if(tipo == 1){
+		if(vistaFrente == 'block'){
+			$('.frente .ubicaciones-aplique-frente .texto-ubicacion').css('opacity',1);
+		}else{
+			$('.dorso .ubicaciones-aplique-dorso .texto-ubicacion').css('opacity',1);
+		}
+
+	}else{
+		if(vistaFrente == 'block'){
+			$('.frente .ubicaciones-bordado-frente .texto-ubicacion').css('opacity',1);
+		}else{
+			$('.dorso .ubicaciones-bordado-dorso .texto-ubicacion').css('opacity',1);
+		}
+	}
+}
+
+function pintaTexto(val2){
+	var modelo = $('#buzo').attr('value');
+	val1 = $('#seleccion').attr('value');
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('color-pleno-'+i);
+		$('#popup-ubicacion'+val1).removeClass('color-pleno-'+i);
+	}
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('font-degrade-'+i);
+		$('#popup-ubicacion'+val1).removeClass('font-degrade-'+i);
+	}
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('font-trama-'+i);
+		$('#popup-ubicacion'+val1).removeClass('font-trama-'+i);
+	}
+	$('#ubicacion'+val1).addClass(val2);
+	$('#popup-ubicacion'+val1).addClass(val2);
+	$('.row-btn').fadeIn();
+	$('#input_modelo'+modelo+'-color-texto'+val1).attr('value',val2);
+	$('#input_modelo'+modelo+'-trama-texto'+val1).attr('value','');
+}
+
+function pintaTextoTrama(val2){
+	var modelo = $('#buzo').attr('value');
+	val1 = $('#seleccion').attr('value');
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('color-pleno-'+i);
+		$('#popup-ubicacion'+val1).removeClass('color-pleno-'+i);
+	}
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('font-degrade-'+i);
+		$('#popup-ubicacion'+val1).removeClass('font-degrade-'+i);
+	}
+	for(i=1;i<=60;i++){
+		$('#ubicacion'+val1).removeClass('font-trama-'+i);
+		$('#popup-ubicacion'+val1).removeClass('font-trama-'+i);
+	}
+	$('#ubicacion'+val1).addClass(val2);
+	$('#popup-ubicacion'+val1).addClass(val2);
+	$('.row-btn').fadeIn();
+	$('#input_modelo'+modelo+'-color-texto'+val1).attr('value','');
+	$('#input_modelo'+modelo+'-trama-texto'+val1).attr('value',val2);
+}
+
+function pintaTextoBorde(val2){
+	var modelo = $('#buzo').attr('value');
+	val1 = $('#seleccion').attr('value');
+	for(i=1;i<=54;i++){
+		$('#ubicacion'+val1).removeClass('color-borde-'+i);
+		$('#popup-ubicacion'+val1).removeClass('color-borde-'+i);
+	}
+	$('#ubicacion'+val1).addClass('texto-borde');
+	$('#popup-ubicacion'+val1).addClass('texto-borde');
+	$('#ubicacion'+val1).addClass(val2);
+	$('#popup-ubicacion'+val1).addClass(val2);
+	$('.row-btn').fadeIn();
+	$('#input_modelo'+modelo+'-color-borde-texto'+val1).attr('value',val2);
+}
+
+function muestraApliqueColor(){
+	$('#seleccion_listado_color1').addClass('seleccionado');
+	$('#seleccion_listado_color2').removeClass('seleccionado');
+	$('#seleccion_listado_color3').removeClass('seleccionado');
+	$('#aplique-relleno-estampado').fadeOut(0);
+	$('#aplique-borde-pleno').fadeOut(0);
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var anchoActual = $('#colores-aplique .wrapper').width();
+		$('#colores-aplique .wrapper').width((anchoActual * 2));
+	}
+	$('#aplique-relleno-pleno').fadeIn();
+}
+function muestraApliqueColorEstampado(){
+	$('#seleccion_listado_color2').addClass('seleccionado');
+	$('#seleccion_listado_color1').removeClass('seleccionado');
+	$('#seleccion_listado_color3').removeClass('seleccionado');
+	$('#aplique-relleno-pleno').fadeOut(0);
+	$('#aplique-borde-pleno').fadeOut(0);
+	$('#aplique-relleno-estampado').fadeIn(0);
+
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var anchoActual = $('#tramas-aplique .wrapper').width();
+		$('#tramas-aplique .wrapper').width((anchoActual * 1.1));
+	}
+
+}
+function muestraApliqueColorBorde(){
+	$('#seleccion_listado_color3').addClass('seleccionado');
+	$('#seleccion_listado_color1').removeClass('seleccionado');
+	$('#seleccion_listado_color2').removeClass('seleccionado');
+	$('#aplique-relleno-estampado').fadeOut(0);
+	$('#aplique-relleno-pleno').fadeOut(0);
+	$('#aplique-borde-pleno').fadeIn();
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var anchoActual = $('#colores-aplique-borde .wrapper').width();
+		$('#colores-aplique-borde .wrapper').width((anchoActual * 2));
+	}
+}
+
+function muestraDorso(){
+	$('.thumb-frente').fadeOut();
+	$('.thumb-dorso').fadeIn();
+	$('.frente').fadeIn(0);
+	$('.dorso').fadeOut(0);
+}
+function muestraFrente(){
+	$('.thumb-dorso').fadeOut();
+	$('.thumb-frente').fadeIn();
+	$('.dorso').fadeIn(0);
+	$('.frente').fadeOut(0);
+}
+function verPasos(){
+	var estado = $('#pasos').css('display');
+	if(estado == 'none'){
+		$('#pasos').fadeIn();
+		var valor = $('#pasos').offset().top;
+		$('html,body').animate({scrollTop: (valor - 125)}, 'slow');
+	}else{
+		$('#pasos').fadeOut();
+	}
+}
+function borraTodoPaso2(id){
+	$('.grafico-contenido').load('ajax/paso-2.php?buzo='+id);
+	$('#grafico-final').load('ajax/paso-2-preview.php?buzo='+id);
+	$('#inputs-partes').load('ajax/paso-2-inputs.php?buzo='+id);
+	$('#seleccion').attr('value','');
+	$('#relacionado').attr('value','');
+	$('.lista-titulo').removeClass('seleccionado');
+	$('.lista-opcion').removeClass('seleccionado');
+	$('.row-btn').fadeOut();
+	$('#paso2-color').fadeOut();
+}
+
+function borraTodoPaso3(values){
+	$('.grafico-contenido').load('ajax/paso-3.php?'+values);
+	$('#grafico-final').load('ajax/paso-2-preview.php?'+values);
+	$('#inputs-textos').load('ajax/paso-3-inputs.php?'+values);
+	$('#seleccion').attr('value','');
+	$('#nro_seleccion').attr('value','');
+	$('#tipo').attr('value','');
+	$('.lista-opcion').removeClass('seleccionado');
+	$('.row-btn').fadeOut();
+	$('#aplique-texto').attr('value','');
+	$('#paso3-lugar').fadeOut();
+	$('#paso3-palabra').fadeOut();
+	$('#paso3-color-bordado').fadeOut();
+	$('#paso3-color-aplique').fadeOut();
+}
+/*
+function borraTodoPaso3(){
+	for(i=1;i<=8;i++){
+		$('#ubicacion'+i).removeClass();
+		$('#ubicacion'+i).addClass('modelo1-ubicacion');
+		$('#ubicacion'+i).addClass('modelo1-ubicacion'+i);
+		$('#ubicacion'+i).css('font-size','1.5vw');
+		$('#ubicacion'+i).html('0'+i);
+	}
+	$('#tipo').attr("value", "");
+	$('.lista-opcion').removeClass('seleccionado');
+	$('#paso3-lugar').fadeOut(0);
+	$('#paso3-palabra').fadeOut(0);
+	$('#paso3-color-bordado').fadeOut(0);
+	$('.row-btn').fadeOut(0);
+	$('.ubicaciones-bordado-frente').fadeOut(0);
+	$('.ubicaciones-aplique-frente').fadeOut(0);
+	$('.ubicaciones-bordado-dorso').fadeOut(0);
+	$('.ubicaciones-aplique-dorso').fadeOut(0);
+	for(i=1;i<=8;i++){
+		$('#input_modelo1-texto'+i).attr("value", "");
+		$('#input_modelo1-color-texto'+i).attr("value", "");
+		$('#input_modelo1-trama-texto'+i).attr("value", "");
+		$('#input_modelo1-color-borde-texto'+i).attr("value", "");
+		$('#input_modelo1-tamano-texto'+i).attr("value", "");
+		$('#input_modelo1-font-texto'+i).attr("value", "");
+		$('#ubicacion'+i).html('0'+i);
+	}
+}
+*/
+function validaCampo(tipo,id,val){
+	if(tipo == 'email'){
+		var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		if(!regex.test(val)) {
+			$('#'+id).css('color','#FF0000');
+			return false;
+		}else{
+			$('#'+id).css('color','#1d1d1b');
+			$('#'+id).addClass('input-seleccionado');
+			//$('#flecha-'+id).addClass('flecha-seleccionado');
+		}
+	}else{
+		if(val != ''){
+			$('#'+id).addClass('input-seleccionado');
+			//$('#flecha-'+id).addClass('flecha-seleccionado');
+		}
+	}
+}
+function coloresScroll(val){
+	$('#'+val).animate({scrollLeft: "+=234px"}, "slow");
+}
+function tramassScroll(val){
+	$('#'+val).animate({scrollLeft: "+=216px"}, "slow");
+}
+function verPreview(){
+		$('#bg_diseno_popup').fadeIn();
+}
+function cerrarPreview(){
+		$('#bg_diseno_popup').fadeOut();
+}
+function guardaPaso2(){
+	var valuesInputs = $('#inputs-partes').html();
+	$('#paso-anterior').html(valuesInputs);
+}
+function deshacerUltimoPaso2(){
+	var ultimaParte = $('#ultima_parte').attr('value');
+	var ultimoValor = $('#ultimo_valor').attr('value');
+	var ultimaFuncion = $('#ultima_funcion').attr('value');
+	var valuesInputs = $('#paso-anterior').html();
+	$('#inputs-partes').html(valuesInputs);
+
+	if(ultimaFuncion == 'pintaPleno'){
+		pintaPleno(ultimoValor);
+	}
+	if(ultimaFuncion == 'pintaDegrade'){
+		pintaDegrade(ultimoValor);
+	}
+	if(ultimaFuncion == 'pintaTrama'){
+		pintaTrama(ultimoValor);
+	}
+}
+function despliegaPartes(){
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var parteDisplay = $('.paso-2-lista-partes').css('display');
+		if(parteDisplay == 'none'){
+			$('.paso-2-lista-partes').fadeIn(50);
+			$('.titulo-columna-flecha').removeClass('flecha-abre');
+		}else{
+			$('.paso-2-lista-partes').fadeOut(50);
+			$('.titulo-columna-flecha').addClass('flecha-abre');
+		}
+	}
+}
+function tabColores(){
+	$('.colores-degrades').fadeOut(0);
+	$('.colores-tramas').fadeOut(0);
+	$('.colores-plenos').fadeIn(0);
+	$('#opcion-mobile-plenos').addClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-degrades').removeClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-tramas').removeClass('opcion-mobile-seleccionada');
+}
+function tabDegrades(){
+	$('.colores-tramas').fadeOut(0);
+	$('.colores-plenos').fadeOut(0);
+	$('.colores-degrades').fadeIn(0);
+	$('#opcion-mobile-plenos').removeClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-degrades').addClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-tramas').removeClass('opcion-mobile-seleccionada');
+}
+function tabTramas(){
+	$('.colores-plenos').fadeOut(0);
+	$('.colores-degrades').fadeOut(0);
+	$('.colores-tramas').fadeIn(0);
+	$('#opcion-mobile-plenos').removeClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-degrades').removeClass('opcion-mobile-seleccionada');
+	$('#opcion-mobile-tramas').addClass('opcion-mobile-seleccionada');
+}
+function despliegaTipos(){
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var parteDisplay = $('.paso-3-lista-tipos').css('display');
+		if(parteDisplay == 'none'){
+			$('.paso-3-lista-tipos').fadeIn(50);
+			$('.titulo-columna-flecha').removeClass('flecha-abre');
+		}else{
+			$('.paso-3-lista-tipos').fadeOut(50);
+			$('.titulo-columna-flecha').addClass('flecha-abre');
+		}
+	}
+}
+function openPopupTextos(){
+	$('#popup-textos').fadeIn();
+	$('#aplique-font-1-mobile').fadeOut(0);
+	$('#aplique-font-2-mobile').fadeOut(0);
+	var tipo = $('#tipo').attr('value');
+	$('#aplique-font-'+tipo+'-mobile').fadeIn(0);
+}
+function closePopupTextos(){
+	$('#popup-textos').fadeOut();
+}
+function despliegaCategorias(){
+	var broserWidth = $(window).width();
+	if(broserWidth < 768){
+		var parteDisplay = $('.menu').css('display');
+		if(parteDisplay == 'none'){
+			$('.menu').fadeIn(50);
+			$('.titulo').addClass('titulo-abre');
+		}else{
+			$('.menu').fadeOut(50);
+			$('.titulo').removeClass('titulo-abre');
+		}
+		scrollScreen('productos');
+	}
+}
+function nombreAdjunto(){
+	var file = $('#adjunto')[0].files[0].name;
+	$('#adjunto-tx').html(file);
+}
