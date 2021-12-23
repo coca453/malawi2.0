@@ -1,16 +1,18 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SwiperComponent } from './shared/swiper/swiper.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SwiperComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
