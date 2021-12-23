@@ -1,9 +1,8 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from "@angular/core";
 
-// import Swiper core and required modules
-import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import { Component, OnInit } from '@angular/core';
 
-// install Swiper modules
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 
@@ -17,6 +16,10 @@ export class SwiperComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+ 
+  onSlideChange() {
+    console.log('slide change');
   }
 
 }
