@@ -1,0 +1,36 @@
+.tx-inicio {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, 100px);
+  background-color: #fff;
+  color: #fff;
+}
+
+.a {
+  grid-column: 2 / 10;
+  grid-row: 1;
+  position: relative;
+  font-family: "Barlow", sans-serif;
+  color: #1d1d1b;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 1.5em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.b {
+  grid-column: 15 / 15;
+  grid-row: 1;
+  border: 0px;
+  padding: 0;
+  position: relative;
+  margin: 0;
+  width: 130px;
+  top: -50px;
+  right: 120px;
+}
