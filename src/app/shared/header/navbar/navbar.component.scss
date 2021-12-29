@@ -1,6 +1,6 @@
 .container {
-  margin: auto;
-  background-color: snow;
+  margin-top: 1rem;
+
 }
 .row {
   display: flex;
@@ -8,6 +8,7 @@
 
 .col {
   &-1-2 {
+    margin-top: 0.5rem;
     margin-left: 2rem;
     width: 70%;
   }
@@ -29,11 +30,16 @@
 }
 
 .thumb {
-  width: 6.25rem;
+  width: 10rem;
   height: auto;
+  transition: all 1s;
 }
 h4{
     font-weight: 600;
     line-height: 1.5rem;
     font-family: 'barlow', sans-serif;
+}
+.size{
+  width: 5rem;
+  transition: all 0.3s;
 }

@@ -1,4 +1,5 @@
-<h1 *ngIf="isMobile">Mobile</h1>
-<h1 *ngIf="!isMobile">Normal</h1>
-<app-navbar></app-navbar>
+<!-- <h1 *ngIf="isMobile">Mobile</h1>
+<h1 *ngIf="!isMobile">Normal</h1> -->
+<app-navbar class="menu menu-stick" [ngClass]="{'menu-scroll' : scroll}" [scrollEvent]="scrollnumber"></app-navbar>
 <app-pages></app-pages>
+<app-pages></app-pages><app-pages></app-pages>
