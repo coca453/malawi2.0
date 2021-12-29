@@ -1,0 +1,20 @@
+.menu {
+  padding-bottom: 10px;
+  height: 150px;
+  width: 100%;
+  background-image: url(../assets/header-bg.svg);
+  background-position: left bottom;
+  display: inline-block;
+  margin-top: 1rem;
+
+  &-stick {
+    z-index: 999;
+    margin-top: -1.25rem;
+  }
+  
+  &-scroll {
+    position: fixed;
+    height: 125px;
+    background-image: url(../assets/header-bg-scroll.svg);
+  }
+}
